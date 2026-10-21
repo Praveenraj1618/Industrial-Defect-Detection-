@@ -103,6 +103,19 @@ Optional arguments:
 
 The full numeric report is saved under runs/defect_detection/evaluation/. Report the metrics produced by your own run; do not quote assumed or target accuracy as measured performance.
 
+## Generate a report-ready results grid
+
+After training, generate a collage showing one held-out test example for each defect class, with YOLO bounding boxes, the ground-truth category, the top predictions, and confidence scores:
+
+    python make_results_grid.py
+
+The script writes:
+
+- `outputs/model_detection_results_grid.png` — a 5-column results collage suitable for the RTPS report.
+- `outputs/model_detection_results.csv` — image-level predictions and inference times.
+
+The grid uses images from the held-out test split and does not invent prediction scores. It is illustrative only; use `python evaluate.py` for aggregate metrics over the complete test set.
+
 ## Run the dashboard
 
 After training:
