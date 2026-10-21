@@ -15,3 +15,6 @@ venv/
 *.onnx
 runs/
 outputs/
+
+# Rebuilt locally by convert_dataset.py
+dataset_yolo_prepared/
