@@ -210,7 +210,7 @@ if run_inspection:
         )
 
         st.subheader("Image results")
-        for item in image_outputs:
+        for output_index, item in enumerate(image_outputs):
             with st.expander(
                 f"{item['name']} — {item['status']} ({item['detections']} detection(s))",
                 expanded=True,
@@ -227,7 +227,7 @@ if run_inspection:
                         data=image_buffer.getvalue(),
                         file_name=f"{Path(item['name']).stem}_annotated.png",
                         mime="image/png",
-                        key=f"download_{item['name']}_{len(item['annotated'])}",
+                        key=f"download_{output_index}_{item['name']}",
                     )
 
         st.subheader("Detection details")
