@@ -18,7 +18,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT / "runs" / "defect_detection" / "train" / "weights" / "best.pt",
     )
-    parser.add_argument("--data", type=Path, default=ROOT / "dataset_yolo" / "data.yaml")
+    parser.add_argument("--data", type=Path, default=ROOT / "dataset_yolo_prepared" / "data.yaml")
     parser.add_argument("--split", choices=("val", "test"), default="test")
     parser.add_argument("--imgsz", type=int, default=640)
     parser.add_argument("--device", default="auto", help="auto, 0 for NVIDIA GPU, or cpu.")
