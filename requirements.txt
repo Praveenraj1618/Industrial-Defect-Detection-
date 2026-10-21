@@ -1,0 +1,10 @@
+# Install a CUDA-enabled PyTorch build for your NVIDIA GPU first:
+# https://pytorch.org/get-started/locally/
+# The command above matters because a generic pip install may install CPU-only PyTorch.
+ultralytics>=8.4.0
+streamlit>=1.40.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+pandas>=2.0.0
+matplotlib>=3.7.0
+PyYAML>=6.0
