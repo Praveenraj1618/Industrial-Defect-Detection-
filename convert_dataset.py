@@ -178,7 +178,7 @@ def main() -> None:
                 "\n".join(lines) + "\n", encoding="utf-8"
             )
 
-    # Use relative paths so the repository works on Windows and other systems.
+    # Save this machine's absolute dataset path; rerun this converter on each machine.
     config = {
         "path": OUTPUT.resolve().as_posix(),
         "train": "images/train",
