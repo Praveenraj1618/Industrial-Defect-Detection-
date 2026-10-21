@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+.pytest_cache/
+
+# Conda/virtual environments and local settings
+.venv/
+venv/
+.env
+.streamlit/secrets.toml
+
+# Model weights and generated training/evaluation outputs
+*.pt
+*.onnx
+runs/
+outputs/
