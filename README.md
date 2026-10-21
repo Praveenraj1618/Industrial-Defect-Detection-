@@ -63,7 +63,7 @@ Run this after the source dataset has been extracted:
 
     python convert_dataset.py
 
-The command creates dataset_yolo/ with images/{train,val,test}, labels/{train,val,test}, data.yaml, and classes.json. It leaves the original source dataset untouched and rebuilds the generated folder when rerun.
+The command creates dataset_yolo_prepared/ with images/{train,val,test}, labels/{train,val,test}, data.yaml, and classes.json. It leaves the original source dataset untouched and rebuilds the generated folder when rerun.
 
 The split is deterministic (seed 42) and uses approximately 80% training, 10% validation, and 10% test images. Only images with at least one valid annotated bounding box are included.
 
