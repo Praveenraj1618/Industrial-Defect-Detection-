@@ -67,7 +67,7 @@ The command creates dataset_yolo/ with images/{train,val,test}, labels/{train,va
 
 The split is deterministic (seed 42) and uses approximately 80% training, 10% validation, and 10% test images. Only images with at least one valid annotated bounding box are included.
 
-The dataset audit found one annotation labelled d; the converter excludes that one-off label rather than creating an isolated class. The names 10_yaozhe and 10_yaozhed remain separate because they have not been verified as equivalent. Review these label names against the dataset documentation if semantic class names are required in your report.
+The dataset audit found one malformed annotation labelled d; the converter excludes it instead of creating a one-example class. It also normalizes the variant label 10_yaozhed to 10_yaozhe, so the output reflects the dataset's ten standard defect categories. The original class names remain code-like; the report can map them to descriptions such as punching hole, weld line, crescent gap, water spot, oil spot, silk spot, inclusion, rolled pit, crease, and waist folding. Dataset category overview: https://datasetninja.com/gc10-det
 
 ## Train
 
