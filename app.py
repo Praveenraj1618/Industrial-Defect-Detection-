@@ -14,6 +14,18 @@ from ultralytics import YOLO
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_WEIGHTS = ROOT / "runs" / "defect_detection" / "train" / "weights" / "best.pt"
+DISPLAY_NAMES = {
+    "1_chongkong": "Punching hole",
+    "2_hanfeng": "Weld line",
+    "3_yueyawan": "Crescent gap",
+    "4_shuiban": "Water spot",
+    "5_youban": "Oil spot",
+    "6_siban": "Silk spot",
+    "7_yiwu": "Inclusion",
+    "8_yahen": "Rolled pit",
+    "9_zhehen": "Crease",
+    "10_yaozhe": "Waist folding",
+}
 
 st.set_page_config(
     page_title="Industrial Defect Inspection",
@@ -144,7 +156,8 @@ if run_inspection:
             for box in boxes:
                 class_id = int(box.cls[0].item())
                 class_names = prediction.names
-                class_name = class_names.get(class_id, str(class_id)) if isinstance(class_names, dict) else class_names[class_id]
+                class_code = class_names.get(class_id, str(class_id)) if isinstance(class_names, dict) else class_names[class_id]
+                class_name = DISPLAY_NAMES.get(class_code, class_code)
                 confidence_score = float(box.conf[0].item())
                 x1, y1, x2, y2 = [round(float(value), 1) for value in box.xyxy[0].tolist()]
                 records.append(
