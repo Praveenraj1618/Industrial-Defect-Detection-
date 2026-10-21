@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "dataset"
 IMAGE_ROOT = SOURCE / "images"
 XML_ROOT = SOURCE / "label"
-OUTPUT = ROOT / "dataset_yolo"
+OUTPUT = ROOT / "dataset_yolo_prepared"
 
 SEED = 42
 INVALID_CLASSES = {"d"}  # Malformed one-off annotation in the source dataset.
