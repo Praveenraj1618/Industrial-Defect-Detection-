@@ -16,7 +16,13 @@ XML_ROOT = SOURCE / "label"
 OUTPUT = ROOT / "dataset_yolo"
 
 SEED = 42
-INVALID_CLASSES = {"d"}  # One-off annotation typo found during dataset audit.
+INVALID_CLASSES = {"d"}  # Malformed one-off annotation in the source dataset.
+CLASS_ALIASES = {"10_yaozhed": "10_yaozhe"}  # Normalize a documented duplicate spelling.
+
+
+def normalize_class(raw_name: str | None) -> str:
+    name = raw_name.strip() if raw_name else ""
+    return CLASS_ALIASES.get(name, name)
 
 
 def find_images(root: Path) -> dict[str, Path]:
@@ -56,8 +62,7 @@ def main() -> None:
         if root is None:
             continue
         for obj in root.findall("object"):
-            raw_name = obj.findtext("name")
-            name = raw_name.strip() if raw_name else ""
+            name = normalize_class(obj.findtext("name"))
             if name and name not in INVALID_CLASSES:
                 class_names.add(name)
                 class_counts[name] += 1
@@ -104,8 +109,7 @@ def main() -> None:
 
         lines: list[str] = []
         for obj in root.findall("object"):
-            raw_name = obj.findtext("name")
-            name = raw_name.strip() if raw_name else ""
+            name = normalize_class(obj.findtext("name"))
             if not name or name in INVALID_CLASSES:
                 continue
             if name not in class_to_id:
@@ -205,7 +209,8 @@ def main() -> None:
     print(f"Images without valid objects skipped: {images_without_valid_objects}")
     print(f"Output dataset: {OUTPUT}")
     print(f"Dataset config: {OUTPUT / 'data.yaml'}")
-    print("\nNote: 10_yaozhe and 10_yaozhed remain separate until their meaning is verified.")
+    print("\nClass aliases applied: 10_yaozhed -> 10_yaozhe")
+    print("Malformed class label excluded: d")
 
 
 if __name__ == "__main__":
